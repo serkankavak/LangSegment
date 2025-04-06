@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 def get_version(package):
     "Return package version as listed in `__version__` in `init.py`"
-    initfile = Path(package, "__init__.py").read_text()  # Python >= 3.5
+    initfile = (Path(package) / "__init__.py").read_text()  # Python >= 3.5
     return re.search("__version__ = ['\"]([^'\"]+)['\"]", initfile)[1]
 
 def get_long_description():
@@ -15,8 +15,8 @@ def get_long_description():
 
 setup(
     name='LangSegment',
-    version='0.3.5',
-    packages=find_packages(),
+    version=get_version("LangSegment"),
+    packages=["LangSegment"],
     include_package_data=True,
     long_description=get_long_description(),
     long_description_content_type='text/markdown',
